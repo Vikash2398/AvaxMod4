@@ -1,6 +1,6 @@
 # SpiderManGame ERC20 Token
 
-SpiderManGame is an ERC20 token contract that enables players to interact within a Spider-Man themed gaming environment. Players can earn rewards by defeating enemies, redeem rewards, check their token balances, and transfer tokens to others.
+SpiderManGame is an ERC20 token contract that allows players to interact within a Spider-Man themed gaming environment. Players can earn tokens by defeating enemies, redeem their tokens for rewards, check their token balances, transfer tokens to others, and burn tokens.
 
 ## Functionality
 
@@ -24,17 +24,23 @@ The SpiderManGame contract includes the following functionality:
 - **Description**: Allows players to redeem their rewards.
 - **Access**: Any player can call this function.
 
-### 4. Check Balance
+### 4. Burn Tokens
+
+- **Function**: `burn(uint256 amount)`
+- **Description**: Allows the owner to burn tokens from their own balance.
+- **Access**: Only the contract owner can call this function.
+
+### 5. Check Balance
 
 - **Function**: `checkBalance(address account) returns (uint256)`
-- **Description**: Enables players to check their token balances.
+- **Description**: Allows players to check their token balances.
 - **Access**: Any player can call this function.
 
-### 5. Transfer Tokens
+### 6. Transfer Tokens
 
 - **Function**: `transferTokens(address recipient, uint256 amount)`
-- **Description**: Allows players to transfer their tokens to others.
-- **Access**: Any player can call this function.
+- **Description**: Enables players to transfer tokens to others.
+- **Access**: Players must have sufficient balance. Any player can call this function.
 
 ## Events
 
@@ -49,5 +55,4 @@ The SpiderManGame contract emits the following events:
 The contract is deployed with the name "SpiderManToken" and the symbol "SPM". It is initialized with an initial supply of 1,000,000 tokens.
 
 ## License
-
 This contract is licensed under the MIT License.
