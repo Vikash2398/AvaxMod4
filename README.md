@@ -1,56 +1,52 @@
-# SpiderManGame Contract
-SpiderManGame is a Solidity smart contract that facilitates a simple game where players can join the game, start the game, defeat the villain, and end the game. The contract is designed to be owned by an address, allowing the owner to control the game's progression.
-## Features
+# SpiderManGame ERC20 Token
 
-- **Ownership**: The contract inherits from the OpenZeppelin Ownable contract, allowing for ownership management.
-- **Game Management**: The contract enables players to join the game, allows the owner to start the game, defeat the villain, and end the game.
-- **Events**: The contract emits events to notify external parties about significant state changes, such as player joins and villain defeats.
+SpiderManGame is an ERC20 token contract that enables players to interact within a Spider-Man themed gaming environment. Players can earn rewards by defeating enemies, redeem rewards, check their token balances, and transfer tokens to others.
 
 ## Functionality
 
-### Constructor
+The SpiderManGame contract includes the following functionality:
 
-- The constructor initializes the contract with the address of the initial owner, who is set as Spider-Man by default.
-- It sets initial values for the number of players and the game status.
+### 1. Collect Kill Count
 
-### joinGame
+- **Function**: `collectKillCount(address player, uint256 enemies)`
+- **Description**: Allows the owner to update the kill count of a player by adding the number of enemies defeated.
+- **Access**: Only the contract owner can call this function.
 
-- Function `joinGame()` allows players to join the game by incrementing the number of players and emitting a `PlayerJoined` event.
-- Players can only join if the game is not already in progress.
+### 2. Issue Rewards
 
-### startGame
+- **Function**: `issueRewards(address player, uint256 rewards)`
+- **Description**: Enables the owner to issue rewards to a player by minting new tokens and transferring them to the player's address.
+- **Access**: Only the contract owner can call this function.
 
-- Function `startGame()` allows the owner to start the game.
-- Requires a minimum of one player to start the game.
+### 3. Redeem Rewards
 
-### defeatVillain
+- **Function**: `redeemRewards()`
+- **Description**: Allows players to redeem their rewards.
+- **Access**: Any player can call this function.
 
-- Function `defeatVillain()` allows the owner to mark the villain as defeated and end the game.
-- Emits a `VillainDefeated` event.
-- Can only be called if the game is in progress.
+### 4. Check Balance
 
-### endGame
+- **Function**: `checkBalance(address account) returns (uint256)`
+- **Description**: Enables players to check their token balances.
+- **Access**: Any player can call this function.
 
-- Function `endGame()` allows the owner to manually end the game without defeating the villain.
+### 5. Transfer Tokens
 
-## Usage
+- **Function**: `transferTokens(address recipient, uint256 amount)`
+- **Description**: Allows players to transfer their tokens to others.
+- **Access**: Any player can call this function.
 
-1. Deploy the SpiderManGame contract, specifying the initial owner address.
-2. Players can join the game using the `joinGame` function.
-3. Once enough players have joined, the owner can start the game using the `startGame` function.
-4. The owner can mark the villain as defeated using the `defeatVillain` function.
-5. The owner can end the game at any time using the `endGame` function.
+## Events
 
-## Security Considerations
+The SpiderManGame contract emits the following events:
 
-- Ensure that only trusted addresses are assigned as the initial owner, as they have full control over the game.
-- Verify that the game logic meets the desired requirements and cannot be manipulated by malicious actors.
+- `PlayerKilled`: Indicates when a player defeats enemies and increases their kill count.
+- `RewardsIssued`: Signifies when rewards are issued to a player.
+- `RewardsRedeemed`: Indicates when a player redeems their rewards.
 
-## Dependencies
+## Deployment
 
-This contract utilizes the Ownable contract from the OpenZeppelin Contracts library for ownership management.
-
-- Ownable: [OpenZeppelin Ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol)
+The contract is deployed with the name "SpiderManToken" and the symbol "SPM". It is initialized with an initial supply of 1,000,000 tokens.
 
 ## License
 
