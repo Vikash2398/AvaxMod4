@@ -13,7 +13,7 @@ contract SpiderManGame is ERC20Burnable, Ownable {
     event RewardsIssued(address indexed player, uint256 rewards);
     event RewardsRedeemed(address indexed player);
 
-    constructor() ERC20("SpiderManToken", "SPM") {
+    constructor(address initialOwner) Ownable(initialOwner) ERC20("SpiderManToken", "SPM") {
         _mint(msg.sender, 1000000 * 10 ** uint(decimals()));
     }
 
@@ -34,6 +34,10 @@ contract SpiderManGame is ERC20Burnable, Ownable {
         emit RewardsRedeemed(msg.sender);
     }
 
+    function burn(uint256 amount) public onlyOwner override {
+        _burn(msg.sender, amount);
+    }
+    
     function checkBalance(address account) public view returns (uint256) {
         return balanceOf(account);
     }
